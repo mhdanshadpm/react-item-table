@@ -1,0 +1,36 @@
+@import "./TableBody/index.scss";
+@import "./TableHeader/index.scss";
+
+#item-table-container {
+    #table-container {
+        width: 100%;
+        #table {
+            display:            table;
+            border-collapse:    collapse;
+            width:              100%;
+            .input {
+                border:         none;
+                outline:        none;
+                border-bottom:  1px solid rgb(177, 177, 177);
+                background:     none;
+                &:hover, &:focus {
+                    border-bottom: 1px solid black;
+                }
+                &.currency{
+                    padding-left: 18px;
+                }
+            }
+        }
+        #add-button {
+            display:            flex;
+            position:           relative;
+            justify-content:    space-evenly;
+            left:               0;
+            top:                0;
+            width:              10%;
+            color:              rgb(152, 0, 253);
+            padding:            0.5rem;
+            cursor:             pointer;
+        }
+    }
+}

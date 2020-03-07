@@ -1,0 +1,42 @@
+#table-container {
+    #table {
+        #table-body {
+            width:      100%;
+            display:    table-row-group;
+            .table-row , tr {
+                display:        table-row;
+                border-radius:  20px;
+                padding:        1px;
+                .table-cell {
+                    display:            table-cell;
+                    text-align:         left;
+                    border:             0;
+                    padding:            0.5rem;
+                    background-color:   rgb(240, 240, 240);
+                    &:last-child{
+                        border-bottom-right-radius: 20px;
+                        border-top-right-radius:    20px;
+                        padding-right:              1rem;
+                    }
+                    &:first-child {
+                        border-bottom-left-radius:  20px;
+                        border-top-left-radius:     20px;
+                        padding-left:               1rem;
+                    }
+                    .dollar-icon {
+                        position:   relative;
+                        left:       1rem;
+                        font-size:  1rem;
+                        color:      gray;
+                    }
+                }
+            }
+            .trash-icon{
+                color: lightgray;
+                &:hover{
+                    color: gray;
+                }
+            }
+        }
+    }  
+}
