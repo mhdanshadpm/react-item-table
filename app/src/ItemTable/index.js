@@ -8,17 +8,18 @@ export const ItemTable = () => {
             identifier:'item',
             inputType: "select",
             options : [
-                { value: "item1", label: "ITEM 1" },
-                { value: "item2", label: "ITEM 2" },
-                { value: "item3", label: "ITEM 3" },
-                { value: "item4", label: "ITEM 4" },
-                { value: "item5", label: "ITEM 5" }
+                { value: "Double Matress", label: "Double Matress" },
+                { value: "Table", label: "Table" },
+                { value: "Wall Art", label: "Wall Art" },
+                { value: "Lamp table", label: "Lamp table" },
+                { value: "Dishpack", label: "Dishpack" }
             ]
         },
         {
             name: "Material Fee",
             identifier:'materialFee',
-            inputType: "currency"
+            inputType: "currency",
+            autoFocus:true,
         },
         {
             name: "Packing Fee",

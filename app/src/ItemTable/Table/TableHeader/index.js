@@ -3,16 +3,14 @@ import React from 'react'
 export const TableHeader = ({ headers }) => {
     const renderHeader = () =>
         headers.map(header => (
-            <th className='table-cell' key={header}>
+            <div className='cell' key={header}>
                 {header}
-            </th>
+            </div>
         ));
     return (
-        <thead id='table-head'>
-            <tr className='table-row'>
+            <div className='row'>
                 {renderHeader()}
-                <th></th>
-            </tr>
-        </thead>
+                <div className='cell'></div>
+            </div>
     );
 };

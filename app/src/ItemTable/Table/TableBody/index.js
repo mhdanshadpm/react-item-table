@@ -1,72 +1,93 @@
 import React from "react";
-import { Delete, AttachMoney } from "@material-ui/icons";
+import { AttachMoney, DeleteOutline, CancelOutlined } from "@material-ui/icons";
 import { Select } from "../../Select";
 
 export const TableBody = ({ columns, rows, onChange, onClickDelete }) => {
+    const renderIcon = (i) => {
+        const isTouched = rows[i].touched;
+        if(isTouched) {
+            return <DeleteOutline className='trash-icon' onClick={() => onClickDelete(i)} />
+        }
+        return <CancelOutlined className='trash-icon' onClick={() => onClickDelete(i)}/>
+    }
     const renderBody = () => {
-        return rows.map((row, i) => {
+        const body =  rows.map((row, i) => {
             return (
-                <tr key={i} className='table-row'>
+                <div key={i} className='row'>
                     {columns.map(column => {
                         const onChangeInput = e => {
                             onChange(e, i, column.identifier);
                         };
+                        const className = ["input"];
+                        const getisValid = () => {
+                            if(!row[column.identifier].isValid) {
+                                className.push("invalid");
+                            }
+                        }
                         switch (column.inputType) {
                             case "currency":
+                                className.push('currency');
+                                let value = row[column.identifier].value;
+                                if (value === '') {
+                                    value = 0;
+                                }
+                                getisValid()
                                 return (
-                                    <td
-                                        className='table-cell'
+                                    <div
+                                        className='cell'
                                         key={column.identifier}
                                     >
                                         <AttachMoney className='dollar-icon' />
                                         <input
-                                            className='input currency'
+                                            autoFocus = {column.autoFocus}
+                                            className={className.join(' ')}
                                             onChange={onChangeInput}
-                                            value={row[column.identifier]}
+                                            value={value}
                                             type='text'
                                         />
-                                    </td>
+                                    </div>
                                 );
                             case "select":
+                                className.push('select');
                                 return (
-                                    <td
-                                        className='table-cell'
+                                    <div
+                                        className='cell'
                                         key={column.identifier}
                                     >
                                         <Select
+                                            classes={className.join(' ')}
                                             options={column.options}
-                                            value={row[column.identifier]}
+                                            value={row[column.identifier].value}
                                             onChange={onChangeInput}
+                                            autoFocus={column.autoFocus}
                                         />
-                                    </td>
+                                    </div>
                                 );
                             default:
+                                className.push('text');
+                                getisValid();
                                 return (
-                                    <td
-                                        className='table-cell'
+                                    <div
+                                        className='cell'
                                         key={column.identifier}
                                     >
                                         <input
-                                            className='input text'
+                                            className={className.join(' ')}
                                             onChange={onChangeInput}
-                                            value={row[column.identifier]}
+                                            value={row[column.identifier].value}
                                             type='text'
                                         />
-                                    </td>
+                                    </div>
                                 );
                         }
                     })}
-                    <td className='table-cell'>
-                        <div
-                            className='trash-icon'
-                            onClick={() => onClickDelete(i)}
-                        >
-                            <Delete />
-                        </div>
-                    </td>
-                </tr>
+                    <div className='cell'>
+                        {renderIcon(i)}
+                    </div>
+                </div>
             );
         });
+        return body.reverse();
     };
-    return <tbody id='table-body'>{renderBody()}</tbody>;
+    return renderBody();
 };

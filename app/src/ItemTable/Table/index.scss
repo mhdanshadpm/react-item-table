@@ -1,36 +1,96 @@
-@import "./TableBody/index.scss";
-@import "./TableHeader/index.scss";
+#table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
-#item-table-container {
-    #table-container {
+.table-section {
+    font-family: Arial, Helvetica, sans-serif;
+    .row {
+        text-align: start;
+        display: flex;
         width: 100%;
-        #table {
-            display:            table;
-            border-collapse:    collapse;
-            width:              100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        border-radius: 15px;
+        border: 1px solid #e2e2e2;
+        border-bottom: none;
+        .cell {
+            padding: 0.5rem;
+            padding-bottom: 0;
+            width: 20%;
+            flex: 1;
+            text-align: start;
             .input {
-                border:         none;
-                outline:        none;
-                border-bottom:  1px solid rgb(177, 177, 177);
-                background:     none;
-                &:hover, &:focus {
-                    border-bottom: 1px solid black;
+                width: 40%;
+                border: none;
+                outline: none;
+                background: none;
+                border-bottom: 1px solid #e2e2e2;
+                &.currency {
+                    padding-left: 1rem;
+				}
+				&.select {
+					width: 90%;
+				}
+                &:active,
+                &:hover,
+                &:focus {
+                    border-bottom: 1px solid #9900ff;
                 }
-                &.currency{
-                    padding-left: 18px;
+            }
+            &:last-child {
+                text-align: end;
+            }
+            .invalid {
+                border-bottom: 1px solid #e70808;
+                &:active,
+                &:hover,
+                &:focus {
+                    border-bottom: 1px solid #e70808;
                 }
             }
         }
-        #add-button {
-            display:            flex;
-            position:           relative;
-            justify-content:    space-evenly;
-            left:               0;
-            top:                0;
-            width:              10%;
-            color:              rgb(152, 0, 253);
-            padding:            0.5rem;
-            cursor:             pointer;
+		&:last-child {
+			border-bottom: 1px solid #e2e2e2;
         }
+        &:hover,
+        &:focus {
+            background-color: #f0f0f0;
+		}
+		&:first-child {
+			border: none;
+			border-bottom: none;
+            padding-bottom: 1rem;
+            .cell {
+                font-weight: 600;
+            }
+		}
+    }
+    .dollar-icon {
+        position: relative;
+        left: 0.7rem;
+        font-size: 0.9rem;
+        padding: 0;
+        top: 2px;
+        color: #a1a1a1;
+    }
+    .trash-icon {
+        color: lightgray;
+        text-align: right;
+        &:hover {
+            color: #a1a1a1;
+        }
+    }
+}
+#add-button {
+	margin-top: 1rem;
+    color: #9900ff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: max-content;
+    span {
+        padding-left: 0.5rem;
     }
 }
