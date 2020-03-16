@@ -1,6 +1,6 @@
 import React from 'react';
-import { AttachMoney, DeleteOutline, CancelOutlined} from "@material-ui/icons";
-import { Select } from "../../../Select";
+import { AttachMoney, DeleteOutline, CancelOutlined} from '@material-ui/icons';
+import { Select } from '../../../Select';
 
 export const Row = props => {
     const { key, columns, onChange, row, onClickDelete } = props;
@@ -21,43 +21,48 @@ export const Row = props => {
             />
         );
     };
+
     const renderColumns = () => {
         return columns.map(column => {
+
             const onChangeInput = e => {
                 onChange(e, key, column.identifier);
             };
-            const className = ["input"];
-            const getisValid = () => {
+
+            const className = ['input'];
+
+            const addInvalidClass = () => {
                 if (!row[column.identifier].isValid) {
-                    className.push("invalid");
+                    className.push('invalid');
                 }
             };
+
             switch (column.inputType) {
-                case "currency":
-                    className.push("currency");
+                case 'currency':
+                    className.push('currency');
                     let value = row[column.identifier].value;
-                    if (value === "") {
+                    if (value === '') {
                         value = 0;
                     }
-                    getisValid();
+                    addInvalidClass();
                     return (
                         <div className='cell' key={column.identifier}>
                             <AttachMoney className='dollar-icon' />
                             <input
                                 autoFocus={column.autoFocus}
-                                className={className.join(" ")}
+                                className={className.join(' ')}
                                 onChange={onChangeInput}
                                 value={value}
                                 type='text'
                             />
                         </div>
                     );
-                case "select":
-                    className.push("select");
+                case 'select':
+                    className.push('select');
                     return (
                         <div className='cell' key={column.identifier}>
                             <Select
-                                classes={className.join(" ")}
+                                classes={className.join(' ')}
                                 options={column.options}
                                 value={row[column.identifier].value}
                                 onChange={onChangeInput}
@@ -66,12 +71,12 @@ export const Row = props => {
                         </div>
                     );
                 default:
-                    className.push("text");
-                    getisValid();
+                    className.push('text');
+                    addInvalidClass();
                     return (
                         <div className='cell' key={column.identifier}>
                             <input
-                                className={className.join(" ")}
+                                className={className.join(' ')}
                                 onChange={onChangeInput}
                                 value={row[column.identifier].value}
                                 type='text'

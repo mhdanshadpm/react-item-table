@@ -2,9 +2,10 @@ import React from 'react';
 
 export const Select = (props) => {
     const { value, onChange, classes, autoFocus } = props;
-    let selected   = value;
-    const options  = [...props.options];
-    if(value === ''){
+    let selected            = value;
+    const options           = [...props.options];
+    const isEmptyString     = (value === '')
+    if(isEmptyString){
         options.push({value:'unset', label:'Select...'})
         selected = 'unset';
     }

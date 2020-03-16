@@ -1,5 +1,5 @@
-import React from "react";
-import { Row } from "./Row";
+import React from 'react';
+import { Row } from './Row';
 
 export const TableBody = ({ columns, rows, onChange, onClickDelete }) => {
     const renderBody = () => {
