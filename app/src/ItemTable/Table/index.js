@@ -5,7 +5,7 @@ import { AddCircleOutline } from '@material-ui/icons';
 
 export const Table = ({columns}) => {
     const columnNames       = columns.map( column => column.name);
-    const initialRow        = columns.reduce((row,col)=> ({...row,[col.identifier]:{value: '', isValid: true }}),{})
+    const initialRow        = columns.reduce((row,col)=> ({...row,[col.identifier]:{value: null, isValid: true }}),{})
     const [rows, setRows]   = useState([]);
 
     const updateRows = (data) => {

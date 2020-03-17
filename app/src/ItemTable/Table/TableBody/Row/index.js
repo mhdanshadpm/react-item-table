@@ -31,8 +31,11 @@ export const Row = props => {
 
             const className = ['input'];
 
-            const addInvalidClass = () => {
-                if (!row[column.identifier].isValid) {
+            const addInvalidClass = (value) => {
+                const currentColumn     = row[column.identifier];
+                const pattern           = /^-?\d+(?:[.,]\d*?)?$/;
+                const isValid           = (currentColumn.isValid && pattern.test(value));
+                if (!isValid) {
                     className.push('invalid');
                 }
             };
@@ -41,10 +44,10 @@ export const Row = props => {
                 case 'currency':
                     className.push('currency');
                     let value = row[column.identifier].value;
-                    if (value === '') {
+                    if (value === null) {
                         value = 0;
                     }
-                    addInvalidClass();
+                    addInvalidClass(value);
                     return (
                         <div className='cell' key={column.identifier}>
                             <AttachMoney className='dollar-icon' />
@@ -64,7 +67,7 @@ export const Row = props => {
                             <Select
                                 classes={className.join(' ')}
                                 options={column.options}
-                                value={row[column.identifier].value}
+                                value={row[column.identifier].value || ''}
                                 onChange={onChangeInput}
                                 autoFocus={column.autoFocus}
                             />
@@ -72,13 +75,13 @@ export const Row = props => {
                     );
                 default:
                     className.push('text');
-                    addInvalidClass();
+                    addInvalidClass(row[column.identifier].value);
                     return (
                         <div className='cell' key={column.identifier}>
                             <input
                                 className={className.join(' ')}
                                 onChange={onChangeInput}
-                                value={row[column.identifier].value}
+                                value={row[column.identifier].value || ''}
                                 type='text'
                             />
                         </div>
