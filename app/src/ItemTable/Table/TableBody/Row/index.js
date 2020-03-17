@@ -3,7 +3,7 @@ import { AttachMoney, DeleteOutline, CancelOutlined} from '@material-ui/icons';
 import { Select } from '../../../Select';
 
 export const Row = props => {
-    const { key, columns, onChange, row, onClickDelete } = props;
+    const { index, columns, onChange, row, onClickDelete } = props;
     const renderIcon = i => {
         const isTouched = row.touched;
         if (isTouched) {
@@ -26,7 +26,7 @@ export const Row = props => {
         return columns.map(column => {
 
             const onChangeInput = e => {
-                onChange(e, key, column.identifier);
+                onChange(e, index, column.identifier);
             };
 
             const className = ['input'];
@@ -87,9 +87,9 @@ export const Row = props => {
         });
     };
     return (
-        <div key={key} className='row'>
+        <div key={index} className='row'>
             {renderColumns()}
-            <div className='cell'>{renderIcon(key)}</div>
+            <div className='cell'>{renderIcon(index)}</div>
         </div>
     );
 };

@@ -7,6 +7,7 @@ export const TableBody = ({ columns, rows, onChange, onClickDelete }) => {
             return (
                 <Row 
                     key={i}
+                    index={i}
                     columns={columns}
                     onChange={onChange}
                     row={row}
